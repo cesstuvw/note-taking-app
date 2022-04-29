@@ -1,4 +1,3 @@
-// import * as React from "react";
 import {
   StyleSheet,
   View,
@@ -22,8 +21,6 @@ const { height, width } = Dimensions.get("window");
 export default function NotesScreen() {
   const navigation = useNavigation();
   const [loading, setLoading] = useState<boolean>(true);
-  const [date, setDate] = useState<string>("");
-  const [day, setDay] = useState<any>("");
   const [notesList, setNotesList] = useState<Array<Notes> | null>(null);
 
   const retrieveData = async () => {
@@ -33,8 +30,6 @@ export default function NotesScreen() {
     if (notes) {
       const json = JSON.parse(notes);
       setNotesList(json);
-    } else {
-      setNotesList(null);
     }
     setLoading(false);
   };
@@ -65,18 +60,9 @@ export default function NotesScreen() {
     }
   };
 
-  useEffect(() => {
-    var date = moment().format("MMMM YYYY");
-    var day = moment().format("DD");
-
-    setDate(date);
-    setDay(day);
-  }, []);
-
   useFocusEffect(
     useCallback(() => {
       retrieveData();
-      setNotesList(null);
     }, [])
   );
 
@@ -129,10 +115,12 @@ export default function NotesScreen() {
                       },
                     ]}
                   >
-                    {day}
+                    {moment(notes.date).format("DD")}
                   </Text>
                   <ListItem.Content numberOfLines={1} style={styles.content}>
-                    <Text style={styles.date}>{date}</Text>
+                    <Text style={styles.date}>
+                      {moment(notes.date).format("MMMMM YYYY")}
+                    </Text>
 
                     <ListItem.Title
                       numberOfLines={1}
@@ -172,7 +160,6 @@ export default function NotesScreen() {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    justifyContent: "center",
     width: "100%",
     height: "100%",
     backgroundColor: colors.backgroundWhite,
@@ -212,23 +199,23 @@ const styles = StyleSheet.create({
   },
 
   containerAdd: {
-    width: 500,
-    height: height,
     justifyContent: "center",
+    width: width,
+    height: height - 300,
     alignItems: "center",
     alignSelf: "center",
     zIndex: -1,
-    position: "absolute",
+    // position: "absolute",
     // backgroundColor: colors.darkBlue,
   },
 
   addNote: {
     // width: width,
     // height: height,
-    justifyContent: "center",
-    alignSelf: "center",
+    // justifyContent: "center",
+    // alignSelf: "center",
     textAlign: "center",
-    zIndex: -1,
+    // zIndex: -1,
     fontFamily: "poppins-light",
     color: colors.darkGrey,
     fontSize: 13,

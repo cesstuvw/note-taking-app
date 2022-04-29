@@ -1,6 +1,6 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import * as React from "react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { StyleSheet, View, Text, ScrollView } from "react-native";
 import { TextInput } from "react-native-paper";
 import {
@@ -10,11 +10,15 @@ import {
 import { colors } from "../../constants/Colors";
 import { getData, removeData, storeData } from "../../database/StoreData";
 import { StatusBar } from "expo-status-bar";
+import moment from "moment";
 
 export default function AddNoteScreen() {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+
   const navigation = useNavigation();
+
+  const GETDATE = new Date().toLocaleDateString();
 
   const addNote = async () => {
     const notes = await getData("notes");
@@ -23,6 +27,7 @@ export default function AddNoteScreen() {
     const data = {
       title: title,
       description: description,
+      date: GETDATE,
     };
 
     if (notes) {
@@ -36,6 +41,7 @@ export default function AddNoteScreen() {
       const jsonValue = JSON.stringify([data]);
       await storeData("notes", jsonValue);
     }
+    navigation.goBack();
   };
 
   return (
@@ -45,12 +51,12 @@ export default function AddNoteScreen() {
           <BackButton
             title=""
             onPress={() => {
-              navigation.navigate("Notes", {
-                screen: "Home",
-              });
+              navigation.goBack();
             }}
           />
-          {/* <Text style={styles.textLogo}>color</Text> */}
+          <Text style={styles.textLogo}>
+            {moment().format("MMMMM DD, YYYY")}
+          </Text>
         </View>
         <Text style={styles.greetingsText}>What's up?</Text>
         <View style={{ marginVertical: 5 }}></View>
@@ -92,22 +98,7 @@ export default function AddNoteScreen() {
             textAlignVertical="top"
             autoComplete={false}
           />
-          {/* onPress={() => navigation.navigate("Notes")} */}
-          <AddNoteButton
-            title="Submit"
-            // onPress={() => {
-            //   addNote();
-            //   navigation.navigate("Notes");
-            // }}
-            onPress={() => {
-              addNote();
-              navigation.navigate("Notes", {
-                screen: "Home",
-              });
-            }}
-
-            // onPress={submit}
-          />
+          <AddNoteButton title="" onPress={addNote} />
           <View style={{ marginVertical: 25 }}></View>
         </View>
         <StatusBar style="dark" />
@@ -135,7 +126,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     fontFamily: "poppins-black",
     fontSize: 15,
-    color: colors.darkBlue,
+    color: colors.darkGrey,
   },
 
   greetingsText: {

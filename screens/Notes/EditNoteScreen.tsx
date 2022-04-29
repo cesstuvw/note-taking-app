@@ -41,9 +41,12 @@ export default function EditNoteScreen() {
   const updateNote = async () => {
     const notes = await getData("notes");
 
+    const GETDATE = new Date().toLocaleDateString();
+
     const data = {
       title: title,
       description: description,
+      date: GETDATE,
     };
 
     if (notes) {
@@ -55,6 +58,7 @@ export default function EditNoteScreen() {
         await storeData("notes", jsonValue);
       }
     }
+    navigation.navigate("Home");
   };
 
   return (
@@ -63,23 +67,12 @@ export default function EditNoteScreen() {
         <View style={styles.header}>
           <BackButton
             title=""
-            onPress={() =>
-              navigation.navigate("Notes", {
-                screen: "ViewNote",
-                params: { notes: notes, index: index },
-              })
-            }
+            onPress={() => {
+              navigation.goBack();
+            }}
           />
           {/* <Text style={styles.textLogo}>color</Text> */}
-          <TouchableOpacity
-            style={styles.edit}
-            onPress={() => {
-              updateNote(),
-                navigation.navigate("Notes", {
-                  screen: "Home",
-                });
-            }}
-          >
+          <TouchableOpacity style={styles.edit} onPress={updateNote}>
             <Text style={styles.textLogo}>update</Text>
           </TouchableOpacity>
         </View>

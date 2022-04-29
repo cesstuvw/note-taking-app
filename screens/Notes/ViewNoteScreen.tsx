@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   },
 
   textDesc: {
-    marginTop: -5,
+    marginTop: 5,
     minHeight: 360,
     fontFamily: "poppins-mono",
     fontSize: 20,
