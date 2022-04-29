@@ -15,6 +15,7 @@ export default function useCachedResources() {
         // Load fonts
         await Font.loadAsync({
           ...FontAwesome.font,
+          "poppins-mono": require("../assets/fonts/Poppins-Regular.ttf"),
           "poppins-extralight": require("../assets/fonts/Poppins-ExtraLight.ttf"),
           "poppins-light": require("../assets/fonts/Poppins-Light.ttf"),
           "poppins-medium": require("../assets/fonts/Poppins-Medium.ttf"),

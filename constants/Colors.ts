@@ -7,6 +7,8 @@ export const colors = {
   backgroundWhite: "#FFF",
   darkGrey: "#AFAFB0",
   lightYellow: "#FCFDDF",
+  textInput: "#3A3D41",
+  borderInput: "#F0F0F0",
 };
 
 export default {
