@@ -2,11 +2,9 @@ import React from "react";
 import {
   StyleSheet,
   TouchableOpacity,
-  Text,
   StyleProp,
   ViewStyle,
 } from "react-native";
-import { colors } from "../../constants/Colors";
 import { MaterialIcons } from "@expo/vector-icons";
 
 interface ButtonProps {

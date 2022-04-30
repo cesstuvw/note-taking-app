@@ -71,7 +71,6 @@ export default function EditNoteScreen() {
               navigation.goBack();
             }}
           />
-          {/* <Text style={styles.textLogo}>color</Text> */}
           <TouchableOpacity style={styles.edit} onPress={updateNote}>
             <Text style={styles.textLogo}>update</Text>
           </TouchableOpacity>

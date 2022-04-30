@@ -87,20 +87,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     // width: 295,
     // height: 385,
-    width: 308 + 5 + 2,
-    height: 262 + 50 + 10,
+    width: 315,
+    height: 322,
     marginTop: 20,
   },
 
-  // input: {
-  //   height: "6%",
-  //   marginTop: 100,
-  //   alignSelf: "center",
-  //   backgroundColor: "transparent",
-  // },
-
   textName: {
-    // width: 45,
     width: 215,
     height: 45,
     alignSelf: "center",
@@ -110,6 +102,7 @@ const styles = StyleSheet.create({
     color: colors.darkBlue,
     marginTop: 2,
     marginBottom: 12,
+    paddingTop: 4,
     borderWidth: 4,
     borderColor: colors.darkBlue,
     borderRadius: 45,

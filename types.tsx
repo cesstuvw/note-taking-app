@@ -39,7 +39,6 @@ export type NotesStackParamList = {
   };
 };
 
-
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
 

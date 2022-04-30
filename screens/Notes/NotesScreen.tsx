@@ -5,6 +5,7 @@ import {
   ScrollView,
   Alert,
   Dimensions,
+  Image,
 } from "react-native";
 import { colors } from "../../constants/Colors";
 import { AddNoteButton } from "../../components/Button/NoteScreenButton";
@@ -79,9 +80,7 @@ export default function NotesScreen() {
             <AddNoteButton
               title=""
               onPress={() => {
-                navigation.navigate("Notes", {
-                  screen: "AddNote",
-                });
+                navigation.navigate("AddNote");
               }}
             />
           </View>
@@ -94,7 +93,6 @@ export default function NotesScreen() {
             <Fragment>
               {notesList.map((notes: Notes, index: number) => (
                 <ListItem
-                  containerStyle={styles.bgcolor}
                   key={index}
                   bottomDivider
                   onLongPress={() => {
@@ -119,7 +117,7 @@ export default function NotesScreen() {
                   </Text>
                   <ListItem.Content numberOfLines={1} style={styles.content}>
                     <Text style={styles.date}>
-                      {moment(notes.date).format("MMMMM YYYY")}
+                      {moment(notes.date).format("MMMM YYYY")}
                     </Text>
 
                     <ListItem.Title
@@ -147,6 +145,10 @@ export default function NotesScreen() {
             </Fragment>
           ) : (
             <View style={styles.containerAdd}>
+              <Image
+                source={require("../../assets/images/blink-empty.png")}
+                style={styles.blink}
+              />
               <Text style={styles.addNote}>Add notes</Text>
             </View>
           )}
@@ -159,7 +161,6 @@ export default function NotesScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     width: "100%",
     height: "100%",
     backgroundColor: colors.backgroundWhite,
@@ -168,11 +169,9 @@ const styles = StyleSheet.create({
   header: {
     width: "80%",
     height: 30,
-    // marginTop: 50,
     marginTop: 50,
     justifyContent: "center",
     alignSelf: "center",
-    // backgroundColor: colors.backgroundYellow,
   },
 
   textLogo: {
@@ -196,6 +195,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     textAlign: "center",
     color: colors.darkBlue,
+    marginTop: 5,
   },
 
   containerAdd: {
@@ -205,20 +205,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     zIndex: -1,
-    // position: "absolute",
-    // backgroundColor: colors.darkBlue,
   },
 
   addNote: {
-    // width: width,
-    // height: height,
-    // justifyContent: "center",
-    // alignSelf: "center",
+    marginTop: 15,
     textAlign: "center",
-    // zIndex: -1,
-    fontFamily: "poppins-light",
-    color: colors.darkGrey,
-    fontSize: 13,
+    fontFamily: "poppins-bold",
+    color: colors.darkBlue,
+    opacity: 0.3,
+    fontSize: 15,
   },
 
   content: {
@@ -227,7 +222,6 @@ const styles = StyleSheet.create({
 
   day: {
     fontFamily: "poppins-bold",
-    // fontSize: 65,
     fontSize: 65,
     marginLeft: 25,
     color: colors.darkGrey,
@@ -237,9 +231,6 @@ const styles = StyleSheet.create({
   date: {
     fontFamily: "poppins-light",
     color: colors.darkGrey,
-    // alignSelf: "flex-end",
-    // position: "absolute",
-    // paddingRight: 35,
     fontSize: 10,
     paddingBottom: 5,
   },
@@ -247,10 +238,14 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "poppins-bold",
     fontSize: 20,
-    // color: colors.darkBlue,
   },
 
   color: {
     backgroundColor: colors.backgroundYellow,
+  },
+
+  blink: {
+    width: 180 + 20,
+    height: 172 + 22,
   },
 });

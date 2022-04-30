@@ -40,11 +40,7 @@ export default function ViewNoteScreen() {
   const [date, setDate] = useState<string>("");
   const navigation = useNavigation();
 
-  useEffect(() => {
-    var date = moment().format("MMMM DD, YYYY");
-
-    setDate(date);
-  }, []);
+  const GETDATE = new Date().toLocaleDateString();
 
   return (
     <View style={styles.container}>
@@ -52,13 +48,13 @@ export default function ViewNoteScreen() {
         <View style={styles.header}>
           <BackButton
             title=""
-            onPress={() =>
-              navigation.navigate("Notes", {
-                screen: "Home",
-              })
-            }
+            onPress={() => {
+              navigation.goBack();
+            }}
           />
-          <Text style={styles.textDate}>{date}</Text>
+          <Text style={styles.textDate}>
+            {moment(notes.date).format("MMMM DD, YYYY")}
+          </Text>
           <TouchableOpacity
             style={styles.edit}
             onPress={() => {

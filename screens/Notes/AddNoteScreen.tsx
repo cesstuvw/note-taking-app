@@ -55,7 +55,7 @@ export default function AddNoteScreen() {
             }}
           />
           <Text style={styles.textLogo}>
-            {moment().format("MMMMM DD, YYYY")}
+            {moment().format("MMMM DD, YYYY")}
           </Text>
         </View>
         <Text style={styles.greetingsText}>What's up?</Text>
@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
     fontFamily: "poppins-black",
     fontSize: 15,
     color: colors.darkGrey,
+    marginRight: 6,
   },
 
   greetingsText: {

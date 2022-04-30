@@ -5,13 +5,11 @@ import {
   Text,
   StyleProp,
   ViewStyle,
-  TextStyle,
 } from "react-native";
 import { colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 
 interface ButtonProps {
-  // value: boolean | null | undefined;
   title: any;
   style?: StyleProp<ViewStyle>;
   onPress?: () => void;

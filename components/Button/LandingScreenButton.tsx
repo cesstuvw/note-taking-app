@@ -15,7 +15,7 @@ interface ButtonProps {
   onPress?: () => void;
 }
 
-const WelcomeButton = (props: ButtonProps) => (
+export const WelcomeButton = (props: ButtonProps) => (
   <TouchableOpacity onPress={props.onPress} style={styles.welcome}>
     <MaterialCommunityIcons name="arrow-right" size={55} color="white" />
   </TouchableOpacity>
@@ -35,5 +35,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-export { WelcomeButton };

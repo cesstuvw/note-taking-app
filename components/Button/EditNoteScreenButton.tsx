@@ -5,7 +5,6 @@ import {
   Text,
   StyleProp,
   ViewStyle,
-  TextStyle,
 } from "react-native";
 import { colors } from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
