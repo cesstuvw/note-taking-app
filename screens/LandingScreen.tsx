@@ -28,10 +28,7 @@ export default function LandingScreen() {
           noted.
         </Text>
       </Text>
-      <WelcomeButton
-        title=""
-        onPress={() => navigation.navigate("EnterName")}
-      />
+      <WelcomeButton title="" onPress={() => navigation.navigate("Notes")} />
       {/* <StatusBar hidden={false} style="dark" /> */}
     </ImageBackground>
   );
